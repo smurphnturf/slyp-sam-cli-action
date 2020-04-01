@@ -1,12 +1,9 @@
-# Container image that runs your code
-FROM alpine:3.10
-ENV SAM_CLI_TELEMETRY 0
+FROM linuxbrew/brew
 
-RUN apk add --no-cache gcc musl-dev && pip install aws-sam-cli
+RUN brew install node
+RUN brew tap aws/tap
+RUN brew install aws-sam-cli
 
-RUN apk add --update npm
-# Copies your code file from your action repository to the filesystem path `/` of the container
 COPY entrypoint.sh /entrypoint.sh
 
-# Code file to execute when the docker container starts up (`entrypoint.sh`)
 ENTRYPOINT ["/entrypoint.sh"]
