@@ -1,6 +1,10 @@
 # Container image that runs your code
 FROM alpine:3.10
+ENV SAM_CLI_TELEMETRY 0
 
+RUN apk add --no-cache gcc musl-dev && pip install aws-sam-cli
+
+RUN apk add --update npm
 # Copies your code file from your action repository to the filesystem path `/` of the container
 COPY entrypoint.sh /entrypoint.sh
 
