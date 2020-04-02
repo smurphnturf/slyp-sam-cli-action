@@ -50,7 +50,8 @@ function buildDirectory {
                echo "No layer to build in ./dependencies/nodejs"
             fi
             echo "executing sam build"
-            exec sam build
+            sam build
+            wait
          fi
 }
 
