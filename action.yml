@@ -8,6 +8,9 @@ inputs:
   directory:
     description: "directory in which to execute sam command."
     default: "./"
+  build:
+    description: "Run sam build and npm install on sub directory layers before sam command."
+    default: "true"
 runs:
   using: "docker"
   image: "./Dockerfile"
