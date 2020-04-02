@@ -23,5 +23,5 @@ if [ "$1" == "sh" ]; then
   exec "$@"
 fi
 
-echo "executing sam $@"
-exec sam "$@"
+echo "executing sam $@ --no-fail-on-empty-changeset"
+exec sam "$@ --no-fail-on-empty-changeset"
