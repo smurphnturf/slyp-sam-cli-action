@@ -23,7 +23,7 @@ jobs:
         uses: actions/checkout@master
       
       - name: sam build
-        uses: smurphnturf/slyp-sam-cli-action@v1.0.2
+        uses: smurphnturf/slyp-sam-cli-action@v1.0.4
         with:
           directory: ./your/path/to/template/
           args: "build"
