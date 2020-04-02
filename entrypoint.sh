@@ -18,9 +18,38 @@ function gotoDirectory {
 
 gotoDirectory
 
-if [ "$1" == "sh" ]; then
-  echo "executing $@"
-  exec "$@"
+if [ $@ = "build" ]; then
+
+   # Ensures a lambda layer is built properly
+   if [ -d "./code/dependencies/nodejs" ] 
+   then
+      echo "running npm install on lambda layer in ./code/dependencies/nodejs"
+      cd ./code/dependencies/nodejs
+      npm install
+      cd ../../..
+   else
+      echo "No layer to build in ./code/dependencies/nodejs"
+   fi
+
+   # Ensures a stand alone layer is built properly
+   if [ -d "./dependencies/nodejs" ] 
+   then
+      if [ -d "./code" ]
+      then
+         echo "running npm install on stand alone layer in ./code"
+         cd ./code
+         npm install
+         cd ..
+      else
+         echo "No layer to build in ./code"
+      fi
+      echo "running npm install on layer ./dependencies/nodejs"
+      cd ./dependencies/nodejs
+      npm install
+      cd ../..
+   else
+      echo "No layer to build in ./dependencies/nodejs"
+   fi
 fi
 
 echo "executing sam $@"
