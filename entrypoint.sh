@@ -22,9 +22,9 @@ function buildDirectory {
             # Ensures a lambda layer is built properly
             if [ -d "./code/dependencies/nodejs" ] 
             then
-               echo "running npm install on lambda layer in ./code/dependencies/nodejs"
+               echo "running yarn install on lambda layer in ./code/dependencies/nodejs"
                cd ./code/dependencies/nodejs
-               npm install
+               yarn install
                cd ../../..
             else
                echo "No layer to build in ./code/dependencies/nodejs"
@@ -35,16 +35,16 @@ function buildDirectory {
             then
                if [ -d "./code" ]
                then
-                  echo "running npm install on stand alone layer in ./code"
+                  echo "running yarn install on stand alone layer in ./code"
                   cd ./code
-                  npm install
+                  yarn install
                   cd ..
                else
                   echo "No layer to build in ./code"
                fi
-               echo "running npm install on layer ./dependencies/nodejs"
+               echo "running yarn install on layer ./dependencies/nodejs"
                cd ./dependencies/nodejs
-               npm install
+               yarn install
                cd ../..
             else
                echo "No layer to build in ./dependencies/nodejs"
